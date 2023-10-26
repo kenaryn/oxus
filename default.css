@@ -1,0 +1,8 @@
+body {
+  height: 100vh;
+  background: linear-gradient(to top left, darkcyan, rgb(145, 230, 230));
+}
+
+.hidden {
+  display: none;
+}

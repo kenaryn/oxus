@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greetings</title>
+  <link rel="stylesheet" href="./default.css" title="Main design" />
+</head>
+<body>
+  <form>
+    <fieldset>
+      <legend>Identity</legend>
+      <input type="text" id="fname" name="fname" placeholder="Enter your first name" />
+      <input type="text" id="lname" name="lname" placeholder="Enter your last name" />
+      <input type="text" id="title" name="title" placeholder="Enter your title" />
+      <select id="race" name="race">
+        <option value="human" selected>Human</option>
+        <option value="elve">Elve</option>
+        <option value="orc">Orc</option>
+      </select>
+      <!-- `name` attribute allows binding of type radio elm for JS events -->
+      <input type="radio" id="commoner" name="rank" value="commoner" checked />Commoners
+      <input type="radio" id="noble" name="rank" value="noble" />Nobility
+      <input type="radio" id="royal" name="rank" value="royal" />Royalty
+    </fieldset>
+
+    <fieldset>
+      <legend>Character's class</legend>
+      <input type="checkbox" id="priest" name="priest" class="characterClass" />Priest
+      <input type="checkbox" id="warrior" name="warrior" class="characterClass" />Warrior
+      <input type="checkbox" id="rogue" name="rogue" class="characterClass" />Rogue
+      <input type="checkbox" id="mage" name="mage" class="characterClass" />Mage
+    </fieldset>
+    <button id="greet">Greet</button>
+  </form>
+  
+  <p id="p--fullname"></p>
+  <p id="p--race"></p>
+  <p id="p--rank"></p>
+  <ul id="classes-list"></ul>
+  
+  <script src="./greetings.js"></script>
+  <!-- <script src="./run01.js"></script> -->
+</body>
+</html>
