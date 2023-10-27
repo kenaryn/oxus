@@ -4,17 +4,20 @@ const classesListElm = document.getElementById('classes--list');
 const btnGreet = document.getElementById('greet');
 const fullNameElm = document.getElementById('p--fullname');
 const raceElm = document.getElementById('p--race');
+let title = document.getElementById('title').value;
+let fname = document.getElementById('fname').value;
+let lname = document.getElementById('lname').value;
+
+const greetByName = function (/** @type {string} */ firstName, /** @type {string} */ lastName) {
+  return !firstName && !lastName ? 'Hi stranger.' : `Greetings, ${title} ${firstName} ${lastName}!`;
+};
 
 const greet = function () {
   /**
    * Greet the user with his/her fullname, or default one otherwise,
    * filling the `p--fullname` element.
    */
-  const fname = document.getElementById('fname').value;
-  const lname = document.getElementById('lname').value;
-  const title = document.getElementById('title').value;
-
-  let fullName = !fname && !lname ? 'Hi stranger.' : `Greetings, ${title} ${fname} ${lname}!`;
+  let fullName = greetByName(fname, lname);
   const nameGreeting = document.createTextNode(fullName);
   fullNameElm.appendChild(nameGreeting);
 };
@@ -45,7 +48,7 @@ const emoteRace = function (/** @type {string} */ race) {
 
   switch (race) {
     case 'human':
-      emote = 'The guard observes the stranger approaching towards him.';
+      emote = '<q>The guard observes the stranger approaching towards him.</q>';
       break;
     case 'elve':
       emote = 'The guard beholds the foreigner walking toward him, plainly subdued by his grace.';
