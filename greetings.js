@@ -3,8 +3,7 @@
 const classesList = document.getElementById('classes--list');
 const btnGreet = document.getElementById('greet');
 
-const greet = function (e) {
-  e.preventDefault();
+const greet = function () {
   const fname = document.getElementById('fname').value;
   const lname = document.getElementById('lname').value;
   const title = document.getElementById('title').value;
@@ -54,12 +53,10 @@ const emoteRace = function (/** @type {string} */ race) {
   return emote;
 };
 
-const greetByRace = function (e) {
+const greetByRace = function () {
   /**
    * Feed `p--race` element with a message depending on the user'race.
    */
-  greet(e);
-
   const race = document.getElementById('race').value;
   const racialGreeting = document.createTextNode(emoteRace(race));
 
@@ -86,11 +83,10 @@ const emoteRank = function (/** @type {string} */ rank) {
   return guardReply;
 };
 
-const greetByRank = function (e) {
+const greetByRank = function () {
   /**
    * Feed `p--rank` element with a message depending on the user's rank.
    */
-  greetByRace(e);
 
   const rank = document.querySelector('input[name=rank]:checked').value;
   const rankGreeting = document.createTextNode(emoteRank(rank));
@@ -104,12 +100,18 @@ const greetByRank = function (e) {
     // Prints all checked classes.
     getClassesList();
   }
+};
 
+const greetFormally = function (e) {
+  // Disable browser default behaviour.
+  e.preventDefault();
+
+  greet();
+  greetByRace();
+  greetByRank();
+
+  // Mask the button to prevent awkwardnesses.
   btnGreet.classList.toggle('hidden');
 };
 
-btnGreet.addEventListener('click', greetByRank);
-
-const greetFormally = function (e) {
-  e.preventDefault();
-};
+btnGreet.addEventListener('click', greetFormally);
