@@ -1,17 +1,22 @@
 'use strict';
 
-const classesList = document.getElementById('classes--list');
+const classesListElm = document.getElementById('classes--list');
 const btnGreet = document.getElementById('greet');
+const fullNameElm = document.getElementById('p--fullname');
+const raceElm = document.getElementById('p--race');
 
 const greet = function () {
+  /**
+   * Greet the user with his/her fullname, or default one otherwise,
+   * filling the `p--fullname` element.
+   */
   const fname = document.getElementById('fname').value;
   const lname = document.getElementById('lname').value;
   const title = document.getElementById('title').value;
 
   let fullName = !fname && !lname ? 'Hi stranger.' : `Greetings, ${title} ${fname} ${lname}!`;
-  const pFullName = document.getElementById('p--fullname');
   const nameGreeting = document.createTextNode(fullName);
-  pFullName.appendChild(nameGreeting);
+  fullNameElm.appendChild(nameGreeting);
 };
 
 const getnumberOfclasses = function () {
@@ -28,11 +33,14 @@ const getClassesList = function () {
     const li = document.createElement('li');
     const className = document.createTextNode(characterClass.name);
     li.appendChild(className);
-    classesList.insertBefore(li, classesList.children[-1]);
+    classesListElm.insertBefore(li, classesListElm.children[-1]);
   });
 };
 
 const emoteRace = function (/** @type {string} */ race) {
+  /**
+   * Return a string for the guard reaction according to user's race.
+   */
   let emote = '';
 
   switch (race) {
@@ -59,12 +67,13 @@ const greetByRace = function () {
    */
   const race = document.getElementById('race').value;
   const racialGreeting = document.createTextNode(emoteRace(race));
-
-  const pRace = document.getElementById('p--race');
-  pRace.appendChild(racialGreeting);
+  raceElm.appendChild(racialGreeting);
 };
 
 const emoteRank = function (/** @type {string} */ rank) {
+  /**
+   * Return a string for the guard reaction according to user's rank.
+   */
   let guardReply = '';
 
   switch (rank) {
@@ -95,14 +104,17 @@ const greetByRank = function () {
 
   if (getnumberOfclasses() < 1 || getnumberOfclasses() > 3) {
     const node = document.createTextNode('Please choose between 1 and 3 classes.');
-    classesList.appendChild(node);
+    classesListElm.appendChild(node);
   } else {
     // Prints all checked classes.
     getClassesList();
   }
 };
 
-const greetFormally = function (e) {
+const greetFormally = function (/** @type {any} */ e) {
+  /**
+   * Call all handler's functions to greet the player.
+   */
   // Disable browser default behaviour.
   e.preventDefault();
 
