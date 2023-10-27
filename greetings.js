@@ -1,9 +1,12 @@
 'use strict';
 
+// HTML tag selections.
 const classesListElm = document.getElementById('classes--list');
 const btnGreet = document.getElementById('greet');
 const fullNameElm = document.getElementById('p--fullname');
 const raceElm = document.getElementById('p--race');
+const errorClassElm = document.querySelector('.error');
+
 let title = document.getElementById('title').value;
 let fname = document.getElementById('fname').value;
 let lname = document.getElementById('lname').value;
@@ -105,9 +108,11 @@ const greetByRank = function () {
   const pRank = document.getElementById('p--rank');
   pRank.appendChild(rankGreeting);
 
+  // Prints an error message if no or all classes are selected by the player.
   if (getnumberOfclasses() < 1 || getnumberOfclasses() > 3) {
     const node = document.createTextNode('Please choose between 1 and 3 classes.');
-    classesListElm.appendChild(node);
+    errorClassElm.appendChild(node);
+    errorClassElm.classList.add('error');
   } else {
     // Prints all checked classes.
     getClassesList();

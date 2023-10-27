@@ -6,3 +6,8 @@ body {
 .hidden {
   display: none;
 }
+
+.error {
+  color: darkred;
+  font-weight: bold;
+}
