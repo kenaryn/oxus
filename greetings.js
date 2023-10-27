@@ -1,6 +1,6 @@
 'use strict';
 
-const classesList = document.querySelector('#classes-list');
+const classesList = document.getElementById('classes--list');
 const btnGreet = document.getElementById('greet');
 
 const greet = function (e) {
@@ -15,11 +15,15 @@ const greet = function (e) {
   pFullName.appendChild(nameGreeting);
 };
 
-// const getnumberOfclasses = function () {
-//   return classes.length;
-// };
+const getnumberOfclasses = function () {
+  let classes = document.querySelectorAll('.characterClass:checked');
+  return classes.length;
+};
 
 const getClassesList = function () {
+  /**
+   * Feed `ul` `classes--list` with list items composed of user's class' names.
+   */
   let classes = document.querySelectorAll('.characterClass:checked');
   classes.forEach(characterClass => {
     const li = document.createElement('li');
@@ -51,6 +55,9 @@ const emoteRace = function (/** @type {string} */ race) {
 };
 
 const greetByRace = function (e) {
+  /**
+   * Feed `p--race` element with a message depending on the user'race.
+   */
   greet(e);
 
   const race = document.getElementById('race').value;
@@ -80,6 +87,9 @@ const emoteRank = function (/** @type {string} */ rank) {
 };
 
 const greetByRank = function (e) {
+  /**
+   * Feed `p--rank` element with a message depending on the user's rank.
+   */
   greetByRace(e);
 
   const rank = document.querySelector('input[name=rank]:checked').value;
@@ -87,7 +97,19 @@ const greetByRank = function (e) {
   const pRank = document.getElementById('p--rank');
   pRank.appendChild(rankGreeting);
 
-  getClassesList();
+  if (getnumberOfclasses() < 1 || getnumberOfclasses() > 3) {
+    const node = document.createTextNode('Please choose between 1 and 3 classes.');
+    classesList.appendChild(node);
+  } else {
+    // Prints all checked classes.
+    getClassesList();
+  }
+
+  btnGreet.classList.toggle('hidden');
 };
 
 btnGreet.addEventListener('click', greetByRank);
+
+const greetFormally = function (e) {
+  e.preventDefault();
+};
